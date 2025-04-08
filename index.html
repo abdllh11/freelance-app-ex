@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelance Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #0d0d0d;
+            color: #ffffff;
+        }
+        header {
+            background: #064e3b;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        header button {
+            background: #10b981;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        header button:hover {
+            background: #059669;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .job-card {
+            background: #1f2937;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s;
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+        .job-card h2 {
+            margin-top: 0;
+            color: #10b981;
+        }
+        .job-card p {
+            margin: 0.5rem 0 1rem;
+            color: #d1d5db;
+        }
+        .apply-btn {
+            background: #10b981;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .apply-btn:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Freelance Hub</h1>
+    <button onclick="postJob()">Post a Job</button>
+</header>
+
+<div class="container" id="jobs-container">
+    <div class="job-card">
+        <h2>Web Developer Needed</h2>
+        <p>Looking for an experienced web developer to build a portfolio website.</p>
+        <button class="apply-btn" onclick="applyJob('Web Developer Needed')">Apply</button>
+    </div>
+    <div class="job-card">
+        <h2>Graphic Designer</h2>
+        <p>Seeking a creative designer for a new logo project.</p>
+        <button class="apply-btn" onclick="applyJob('Graphic Designer')">Apply</button>
+    </div>
+</div>
+
+<script>
+    function postJob() {
+        const jobTitle = prompt('Enter the job title:');
+        const jobDesc = prompt('Enter the job description:');
+        if(jobTitle && jobDesc) {
+            const jobCard = document.createElement('div');
+            jobCard.className = 'job-card';
+            jobCard.innerHTML = `
+                <h2>${jobTitle}</h2>
+                <p>${jobDesc}</p>
+                <button class="apply-btn" onclick="applyJob('${jobTitle}')">Apply</button>
+            `;
+            document.getElementById('jobs-container').prepend(jobCard);
+        } else {
+            alert('Job title and description are required!');
+        }
+    }
+
+    function applyJob(title) {
+        alert(`You applied for: ${title}`);
+    }
+</script>
+
+
+</body>
+</html>
