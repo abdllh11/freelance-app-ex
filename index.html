@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,7 @@
             font-family: 'Inter', sans-serif;
             background: #0d0d0d;
             color: #ffffff;
+            transition: background 0.3s, color 0.3s;
         }
         header {
             background: #064e3b;
@@ -20,11 +21,16 @@
             justify-content: space-between;
             align-items: center;
         }
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
         header h1 {
             margin: 0;
             font-size: 1.8rem;
         }
-        header button {
+        header a button, .header-right button {
             background: #10b981;
             color: #ffffff;
             border: none;
@@ -32,9 +38,10 @@
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
+            text-decoration: none;
             transition: background 0.3s;
         }
-        header button:hover {
+        header a button:hover, .header-right button:hover {
             background: #059669;
         }
         .container {
@@ -74,23 +81,56 @@
         .apply-btn:hover {
             background: #059669;
         }
+        .theme-toggle {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .theme-toggle:hover {
+            background: #1d4ed8;
+        }
     </style>
 </head>
 <body>
+<a href="path-to-your-file.zip" download>
+  <button style="
+    background: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  " onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">
+    Download
+  </button>
+</a>
 
 <header>
-    <h1>Freelance Hub</h1>
-    <button onclick="postJob()">Post a Job</button>
+    <div class="header-left">
+        <h1>Freelance Hub</h1>
+    </div>
+    <div class="header-right">
+        <a href="signin.html"><button>Sign In</button></a>
+        <a href="signup.html"><button>Sign Up</button></a>
+        <button onclick="postJob()">Post a Job</button>
+        <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    </div>
 </header>
 
 <div class="container" id="jobs-container">
     <div class="job-card">
-        <h2>Web Developer Needed</h2>
+        <h2><a href="jobdetails.html" style="color: #10b981; text-decoration: none;">Web Developer Needed</a></h2>
         <p>Looking for an experienced web developer to build a portfolio website.</p>
         <button class="apply-btn" onclick="applyJob('Web Developer Needed')">Apply</button>
     </div>
     <div class="job-card">
-        <h2>Graphic Designer</h2>
+        <h2><a href="jobdetails.html" style="color: #10b981; text-decoration: none;">Graphic Designer</a></h2>
         <p>Seeking a creative designer for a new logo project.</p>
         <button class="apply-btn" onclick="applyJob('Graphic Designer')">Apply</button>
     </div>
@@ -104,7 +144,7 @@
             const jobCard = document.createElement('div');
             jobCard.className = 'job-card';
             jobCard.innerHTML = `
-                <h2>${jobTitle}</h2>
+                <h2><a href="jobdetails.html" style="color: #10b981; text-decoration: none;">${jobTitle}</a></h2>
                 <p>${jobDesc}</p>
                 <button class="apply-btn" onclick="applyJob('${jobTitle}')">Apply</button>
             `;
@@ -117,8 +157,18 @@
     function applyJob(title) {
         alert(`You applied for: ${title}`);
     }
-</script>
 
+    function toggleTheme() {
+        const body = document.body;
+        if (body.style.background === 'white') {
+            body.style.background = '#0d0d0d';
+            body.style.color = '#ffffff';
+        } else {
+            body.style.background = 'white';
+            body.style.color = '#000000';
+        }
+    }
+</script>
 
 </body>
 </html>
